@@ -1,0 +1,14 @@
+Scenario 10: Summarization Constraint
+Python
+import re
+
+def enforce_summary(summary):
+    words = summary.split()
+    
+    if len(words) <= 50:
+        return summary
+    
+    truncated = " ".join(words[:50])
+    sentences = re.split(r'(?<=[.!?]) +', truncated)
+    
+    return " ".join(sentences[:-1]) if len(sentences) > 1 else sentences[0]
